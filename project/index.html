@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Home Creations - Freelance Hub</title>
+    <style>
+        :root {
+            --primary-color:cornflowerblue;
+            --primary-hover:green;
+            --glass-bg: rgba(255, 255, 255, 0.25); 
+            --glass-bg-dark: rgba(255, 255, 255, 0.1); 
+            --glass-bg-light: rgba(255, 255, 255, 0.35); 
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --shadow-light: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
+            --shadow-heavy: 0 12px 48px 0 rgba(31, 38, 135, 0.5);
+            --text-primary: #191970;
+            --text-secondary: #191970;
+            --accent-gradient: linear-gradient(135deg, red 0%, yellow 100%);
+            --teal-gradient: linear-gradient(135deg, ghostwhite 0%, #20B2AA 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--teal-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(28, 172, 120, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(32, 178, 170, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        .glass-light {
+            background: var(--glass-bg-light);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-light);
+        }
+
+        .header {
+            padding: 1rem 2rem;
+            border-radius: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-tab {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            background: var(--glass-bg-dark);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-tab.active,
+        .nav-tab:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .auth-section {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: var(--shadow-light);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--glass-bg-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-refresh {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-refresh:hover {
+            transform: translateY(-2px) rotate(180deg);
+            box-shadow: var(--shadow);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            min-height: calc(100vh - 100px);
+        }
+
+        .sidebar {
+            border-radius: 24px;
+            padding: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+
+        .filter-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            background: var(--glass-bg-dark);
+            color: var(--text-primary);
+            backdrop-filter: blur(10px);
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            accent-color: var(--primary-color);
+        }
+
+        .main-content {
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .search-section {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .search-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .search-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            backdrop-filter: blur(15px);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+            background: var(--glass-bg-light);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-budget {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .project-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .urgent { background: rgba(239, 68, 68, 0.3); color: #ef4444; }
+        .medium { background: rgba(245, 158, 11, 0.3); color: #f59e0b; }
+        .low { background: rgba(34, 197, 94, 0.3); color: #22c55e; }
+
+        .project-details {
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .project-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .skill-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--glass-bg-dark);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-apply {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn-apply:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-save {
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save:hover {
+            background: var(--glass-bg-light);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            color: midnightblue;
+            background: cornflowerblue;
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid var(--glass-border);
+            max-width: 600px;
+            width: 90%;
+            box-shadow: var(--shadow-heavy);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal h2 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            background: ghostwhite;
+            color: var(--text-primary);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .file-upload {
+            border: 2px dashed var(--glass-border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .file-upload input {
+            display: none;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .freelancer-card {
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+        }
+
+        .freelancer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+            background: var(--glass-bg-light);
+        }
+
+        .freelancer-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .freelancer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .freelancer-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .freelancer-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fbbf24;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--glass-bg-dark);
+            border-radius: 10px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .search-section h1 {
+                font-size: 2rem;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="header glass">
+        <div class="header-content">
+            <div class="logo">Temple Home Creations</div>
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="switchTab('projects')">Browse Projects</div>
+                <div class="nav-tab" onclick="switchTab('freelancers')">Find Freelancers</div>
+                <div class="nav-tab" onclick="showModal('postProjectModal')">Post Project</div>
+            </div>
+            <div class="auth-section">
+                <button class="btn btn-secondary" onclick="showModal('signinModal')">Sign In</button>
+                <button class="btn btn-primary" onclick="showModal('signupModal')">Join as Freelancer</button>
+                <!-- <button class="btn-refresh" onclick="refreshPage()">
+                    🔄 Refresh
+                </button> -->
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar glass">
+            <div class="filter-section">
+                <h4>🔍 Filters</h4>
+                
+                <div class="filter-group">
+                    <label>Skills</label>
+                    <input type="text" class="filter-input" placeholder="Enter skills..." id="skillsFilter">
+                </div>
+
+                <div class="filter-group">
+                    <label>Category</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="businessOperations" value="business-operations">
+                            <label for="businessOperations">Business Operations</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="webdev" value="web-development">
+                            <label for="webdev">Web Development</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="design" value="design">
+                            <label for="design">Design</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="writing" value="writing">
+                            <label for="writing">Writing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="marketing" value="marketing">
+                            <label for="marketing">Marketing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mobile" value="mobile-development">
+                            <label for="mobile">Mobile Development</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Budget Range</label>
+                    <select class="filter-input" id="budgetFilter">
+                        <option value="">All Budgets</option>
+                        <option value="0-5000">₹0 - ₹5,000</option>
+                        <option value="5000-15000">₹5,000 - ₹15,000</option>
+                        <option value="15000-50000">₹15,000 - ₹50,000</option>
+                        <option value="50000+">₹50,000+</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Project Duration</label>
+                    <select class="filter-input" id="durationFilter">
+                        <option value="">All Durations</option>
+                        <option value="1-7">1-7 days</option>
+                        <option value="1-4">1-4 weeks</option>
+                        <option value="1-3">1-3 months</option>
+                        <option value="3+">3+ months</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Experience Level</label>
+                    <select class="filter-input" id="experienceFilter">
+                        <option value="">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content glass">
+            <div class="search-section">
+                <h1 id="mainTitle">Find Perfect Projects</h1>
+                <p id="mainSubtitle">Discover amazing opportunities from Temple Home Creations</p>
+                
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search projects, skills, keywords..." id="searchInput">
+                    <input type="text" class="search-input" placeholder="Location" id="locationInput">
+                    <button class="btn btn-primary" onclick="applyFilters()">Search</button>
+                </div>
+            </div>
+
+            <!-- Projects Tab -->
+            <div id="projectsTab" class="project-grid">
+                <!-- Projects will be populated by JavaScript -->
+            </div>
+
+            <!-- Freelancers Tab -->
+            <div id="freelancersTab" class="project-grid hidden">
+                <!-- Freelancers will be populated by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div class="modal" id="signinModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('signinModal')">&times;</button>
+            <h2>Sign In</h2>
+            <form>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Freelancer Sign Up Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('signupModal')">&times;</button>
+            <h2>Join as Freelancer</h2>
+            <form onsubmit="submitFreelancerRegistration(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="freelancerName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="freelancerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Professional Title</label>
+                    <input type="text" id="freelancerTitle" placeholder="e.g. Full Stack Developer" required>
+                </div>
+                <div class="form-group">
+                    <label>Skills (comma-separated)</label>
+                    <input type="text" id="freelancerSkills" placeholder="React, Node.js, Python..." required>
+                </div>
+                <div class="form-group">
+                    <label>Experience Level</label>
+                    <select id="freelancerExperience" required>
+                        <option value="">Select Experience</option>
+                        <option value="beginner">Beginner (0-2 years)</option>
+                        <option value="intermediate">Intermediate (2-5 years)</option>
+                        <option value="expert">Expert (5+ years)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Hourly Rate (₹)</label>
+                    <input type="number" id="freelancerRate" placeholder="500" required>
+                </div>
+                <div class="form-group">
+                    <label>Bio/Description</label>
+                    <textarea id="freelancerBio" placeholder="Tell us about yourself and your expertise..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Resume Upload</label>
+                    <div class="file-upload" onclick="document.getElementById('resumeFile').click()">
+                        <input type="file" id="resumeFile" accept=".pdf,.doc,.docx">
+                        <div>📄 Click to upload your resume</div>
+                        <small>PDF, DOC, DOCX files only</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Portfolio/Sample Work</label>
+                    <div class="file-upload" onclick="document.getElementById('portfolioFiles').click()">
+                        <input type="file" id="portfolioFiles" multiple accept="image/*,.pdf,.zip">
+                        <div>🎨 Upload portfolio files</div>
+                        <small>Images, PDFs, ZIP files</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Portfolio Website/GitHub (optional)</label>
+                    <input type="url" id="freelancerWebsite" placeholder="https://yourportfolio.com">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Register as Freelancer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Post Project Modal -->
+    <div class="modal" id="postProjectModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('postProjectModal')">&times;</button>
+            <h2>Post New Project</h2>
+            <form onsubmit="submitProject(event)">
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <input type="text" id="projectTitle" placeholder="e.g. Build a Modern Website" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="projectCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="web-development">Web Development</option>
+                        <option value="design">Design</option>
+                        <option value="writing">Writing</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="mobile-development">Mobile Development</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Project Description</label>
+                    <textarea id="projectDescription" placeholder="Describe your project requirements in detail..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Required Skills (comma-separated)</label>
+                    <input type="text" id="projectSkills" placeholder="React, CSS, JavaScript..." required>
+                </div>
+                <div class="form-group">
+                    <label>Budget Range (₹)</label>
+                    <select id="projectBudget" required>
+                        <option value="">Select Budget</option>
+                        <option value="0-5000">₹0 - ₹5,000</option>
+                        <option value="5000-15000">₹5,000 - ₹15,000</option>
+                        <option value="15000-50000">₹15,000 - ₹50,000</option>
+                        <option value="50000+">₹50,000+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Project Duration</label>
+                    <select id="projectDuration" required>
+                        <option value="">Select Duration</option>
+                        <option value="1-7">1-7 days</option>
+                        <option value="1-4">1-4 weeks</option>
+                        <option value="1-3">1-3 months</option>
+                        <option value="3+">3+ months</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Priority Level</label>
+                    <select id="projectPriority" required>
+                        <option value="">Select Priority</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Post Project</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let projectsData = [
+       {
+        id: 1,
+        title: "Modern E-commerce Website",
+        description: "Need a full-featured e-commerce website with shopping cart, payment integration, and admin panel. Looking for someone experienced in modern web technologies.",
+        budget: "25000-45000",
+        duration: "1-3",
+        priority: "urgent",
+        category: "web-development",
+        skills: ["React", "Node.js", "MongoDB", "Payment Gateway"],
+        postedDate: "2 days ago",
+        proposals: 12,
+        location: "Remote"
+       },
+       {
+        id: 2,
+        title: "Brand Identity Design Package",
+        description: "Complete brand identity design including logo, business cards, letterhead, and brand guidelines for a tech startup.",
+        budget: "15000-25000",
+        duration: "1-4",
+        priority: "medium",
+        category: "design",
+        skills: ["Adobe Illustrator", "Photoshop", "Brand Design", "Logo Design"],
+        postedDate: "1 day ago",
+        proposals: 8,
+        location: "Remote"
+        },
+        {
+        id: 3,
+        title: "Content Writing for Tech Blog",
+        description: "Need 20 high-quality tech articles (1500+ words each) covering AI, blockchain, and web development topics.",
+        budget: "10000-18000",
+        duration: "1-4",
+        priority: "low",
+        category: "writing",
+        skills: ["Technical Writing", "SEO", "Research", "Content Strategy"],
+        postedDate: "3 days ago",
+        proposals: 15,
+        location: "Remote"
+        },
+        {
+        id: 4,
+        title: "Mobile App Development - Flutter",
+        description: "Develop a cross-platform mobile app for food delivery with user authentication, real-time tracking, and payment integration.",
+        budget: "50000+",
+        duration: "1-3",
+        priority: "urgent",
+        category: "mobile-development",
+        skills: ["Flutter", "Dart", "Firebase", "API Integration", "Payment Gateway"],
+        postedDate: "1 day ago",
+        proposals: 6,
+        location: "Hybrid"
+        },
+        {
+        id: 5,
+        title: "Digital Marketing Campaign",
+        description: "Complete digital marketing strategy and execution for product launch including social media, PPC, and email marketing.",
+        budget: "20000-35000",
+        duration: "1-4",
+        priority: "medium",
+        category: "marketing",
+        skills: ["Google Ads", "Facebook Marketing", "SEO", "Email Marketing", "Analytics"],
+        postedDate: "4 days ago",
+        proposals: 10,
+        location: "Remote"
+        },
+        {
+        id: 6,
+        title: "WordPress Website Redesign",
+        description: "Redesign existing WordPress website with modern UI/UX, responsive design, and performance optimization.",
+        budget: "8000-15000",
+        duration: "1-4",
+        priority: "low",
+        category: "web-development",
+        skills: ["WordPress", "PHP", "CSS", "JavaScript", "UI/UX Design"],
+        postedDate: "5 days ago",
+        proposals: 18,
+        location: "Remote"
+        },
+        {
+        id: 7,
+        title: "Data Analysis & Visualization",
+        description: "Analyze sales data and create interactive dashboards using Python and visualization tools for business insights.",
+        budget: "12000-22000",
+        duration: "1-4",
+        priority: "medium",
+        category: "web-development",
+        skills: ["Python", "Pandas", "Matplotlib", "Tableau", "Data Analysis"],
+        postedDate: "2 days ago",
+        proposals: 7,
+        location: "Remote"
+        },
+        {
+        id: 8,
+        title: "Social Media Graphics Design",
+        description: "Create 50+ social media graphics and templates for Instagram, Facebook, and LinkedIn marketing campaigns.",
+        budget: "5000-10000",
+        duration: "1-7",
+        priority: "urgent",
+        category: "design",
+        skills: ["Canva", "Photoshop", "Social Media Design", "Brand Guidelines"],
+        postedDate: "1 day ago",
+        proposals: 22,
+        location: "Remote"
+       }
+       ];
+
+       // Sample freelancer data
+       let freelancersData = [
+      {
+        id: 1,
+        name: "Rahul Sharma",
+        title: "Full Stack Developer",
+        skills: ["React", "Node.js", "MongoDB", "Python", "AWS"],
+        experience: "expert",
+        hourlyRate: 1200,
+        rating: 4.9,
+        completedProjects: 45,
+        totalEarnings: "₹8,50,000",
+        bio: "Experienced full-stack developer with 6+ years in web development. Specialized in MERN stack and cloud deployment.",
+        location: "Mumbai, Maharashtra",
+        avatar: "RS",
+        category: "web-development",
+        availability: "Available"
+        },
+        {
+        id: 2,
+        name: "Priya Patel",
+        title: "UI/UX Designer",
+        skills: ["Figma", "Adobe XD", "Photoshop", "User Research", "Prototyping"],
+        experience: "intermediate",
+        hourlyRate: 800,
+        rating: 4.8,
+        completedProjects: 32,
+        totalEarnings: "₹4,20,000",
+        bio: "Creative UI/UX designer focused on creating intuitive and beautiful user experiences. Strong background in user research.",
+        location: "Bangalore, Karnataka",
+        avatar: "PP",
+        category: "design",
+        availability: "Available"
+        },
+        {
+        id: 3,
+        name: "Amit Kumar",
+        title: "Content Writer & SEO Specialist",
+        skills: ["Content Writing", "SEO", "Copywriting", "WordPress", "Google Analytics"],
+        experience: "expert",
+        hourlyRate: 600,
+        rating: 4.7,
+        completedProjects: 78,
+        totalEarnings: "₹3,80,000",
+        bio: "Professional content writer with expertise in technical writing and SEO optimization. 5+ years of experience.",
+        location: "Delhi, Delhi",
+        avatar: "AK",
+        category: "writing",
+        availability: "Busy"
+        },
+        {
+        id: 4,
+        name: "Sneha Reddy",
+        title: "Mobile App Developer",
+        skills: ["Flutter", "React Native", "iOS", "Android", "Firebase"],
+        experience: "intermediate",
+        hourlyRate: 1000,
+        rating: 4.6,
+        completedProjects: 28,
+        totalEarnings: "₹5,60,000",
+        bio: "Mobile app developer specializing in cross-platform development. Passionate about creating smooth user experiences.",
+        location: "Hyderabad, Telangana",
+        avatar: "SR",
+        category: "mobile-development",
+        availability: "Available"
+        },
+        {
+        id: 5,
+        name: "Vikash Singh",
+        title: "Digital Marketing Expert",
+        skills: ["Google Ads", "Facebook Marketing", "SEO", "Email Marketing", "Analytics"],
+        experience: "expert",
+        hourlyRate: 900,
+        rating: 4.8,
+        completedProjects: 56,
+        totalEarnings: "₹7,20,000",
+        bio: "Digital marketing specialist with proven track record of increasing ROI by 300%+ for clients across various industries.",
+        location: "Pune, Maharashtra",
+        avatar: "VS",
+        category: "marketing",
+        availability: "Available"
+        },
+        {
+        id: 6,
+        name: "Anita Gupta",
+        title: "Graphic Designer",
+        skills: ["Adobe Creative Suite", "Brand Design", "Print Design", "Web Design"],
+        experience: "intermediate",
+        hourlyRate: 700,
+        rating: 4.5,
+        completedProjects: 42,
+        totalEarnings: "₹2,90,000",
+        bio: "Creative graphic designer with strong eye for detail and brand consistency. Experienced in both digital and print media.",
+        location: "Jaipur, Rajasthan",
+        avatar: "AG",
+        category: "design",
+        availability: "Available"
+        },
+        {
+        id: 7,
+        name: "Rohan Mehta",
+        title: "WordPress Developer",
+        skills: ["WordPress", "PHP", "MySQL", "WooCommerce", "Custom Themes"],
+        experience: "expert",
+        hourlyRate: 850,
+        rating: 4.9,
+        completedProjects: 67,
+        totalEarnings: "₹4,50,000",
+        bio: "WordPress expert with 7+ years experience. Specialized in custom theme development and e-commerce solutions.",
+        location: "Ahmedabad, Gujarat",
+        avatar: "RM",
+        category: "web-development",
+        availability: "Available"
+        },
+        {
+        id: 8,
+        name: "Kavya Nair",
+        title: "Data Analyst",
+        skills: ["Python", "SQL", "Tableau", "Excel", "Machine Learning"],
+        experience: "intermediate",
+        hourlyRate: 750,
+        rating: 4.7,
+        completedProjects: 35,
+        totalEarnings: "₹3,20,000",
+        bio: "Data analyst with strong analytical skills and experience in business intelligence and predictive modeling.",
+        location: "Chennai, Tamil Nadu",
+        avatar: "KN",
+        category: "web-development",
+        availability: "Available"
+        }
+        ];
+
+        let filteredProjects = [...projectsData];
+        let filteredFreelancers = [...freelancersData];
+        let currentTab = 'projects';
+
+        // Initialize the page
+        function initializePage() {
+            renderProjects(filteredProjects);
+            renderFreelancers(filteredFreelancers);
+            setupEventListeners();
+            }
+
+        // Render projects
+        function renderProjects(projects) {
+            const projectGrid = document.getElementById('projectsTab');
+            projectGrid.innerHTML = projects.map(project => `
+                <div class="project-card glass-light" onclick="viewProject(${project.id})">
+                    <div class="project-header">
+                    <div>
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-budget">₹${project.budget.replace('-', ' - ₹')}</div>
+                    </div>
+                <div class="project-badge ${project.priority}">${project.priority.toUpperCase()}</div>
+                </div>
+                <div class="project-details">
+                ${project.description}
+                </div>
+                <div class="project-skills">
+                ${project.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                </div>
+                <div class="project-meta">
+                    <span>📍 ${project.location}</span>
+                    <span>⏱️ ${project.duration} months</span>
+                    <span>📝 ${project.proposals} proposals</span>
+                    <span>🕒 ${project.postedDate}</span>
+                </div>
+                <div class="project-actions">
+                    <button class="btn-apply" onclick="event.stopPropagation(); applyToProject(${project.id})">Apply Now</button>
+                    <button class="btn-save" onclick="event.stopPropagation(); saveProject(${project.id})">💾 Save</button>
+                </div>
+                </div>
+                `).join('');
+            }
+
+                // Render freelancers
+            function renderFreelancers(freelancers) {
+                const freelancerGrid = document.getElementById('freelancersTab');
+                freelancerGrid.innerHTML = freelancers.map(freelancer => `
+                    <div class="freelancer-card glass-light" onclick="viewFreelancer(${freelancer.id})">
+                        <div class="freelancer-header">
+                            <div class="freelancer-avatar">${freelancer.avatar}</div>
+                            <div class="freelancer-info">
+                                <h3>${freelancer.name}</h3>
+                                <div>${freelancer.title}</div>
+                                <div class="freelancer-rating">
+                                 ${'★'.repeat(Math.floor(freelancer.rating))} ${freelancer.rating} (${freelancer.completedProjects} reviews)
+                                </div>
+                            </div>
+                            <div class="project-badge ${freelancer.availability === 'Available' ? 'low' : 'medium'}">
+                            ${freelancer.availability}
+                        </div>
+                        </div>
+                        <div class="project-details">
+                            ${freelancer.bio}
+                        </div>
+                        <div class="project-skills">
+                            ${freelancer.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                        </div>
+                            <div class="stats-row">
+                            <div class="stat">
+                                <div class="stat-number">₹${freelancer.hourlyRate}</div>
+                                <div class="stat-label">Per Hour</div>
+                            </div>
+                        <div class="stat">
+                            <div class="stat-number">${freelancer.completedProjects}</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">${freelancer.totalEarnings}</div>
+                            <div class="stat-label">Earned</div>
+                        </div>
+                    </div>
+                    <div class="project-meta" style="justify-content: center;">
+                        <span>📍 ${freelancer.location}</span>
+                        <span>⭐ ${freelancer.experience.charAt(0).toUpperCase() + freelancer.experience.slice(1)}</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-apply" onclick="event.stopPropagation(); hireFreelancer(${freelancer.id})">Hire Now</button>
+                        <button class="btn-save" onclick="event.stopPropagation(); saveFreelancer(${freelancer.id})">💬 Message</button>
+                    </div>
+                </div>
+                `).join('');
+                }
+
+            // Switch between tabs
+            function switchTab(tab) {
+                currentTab = tab;
+    
+                // Update tab buttons
+                document.querySelectorAll('.nav-tab').forEach(tabBtn => tabBtn.classList.remove('active'));
+                event.target.classList.add('active');
+    
+                // Show/hide content
+                if (tab === 'projects') {
+                    document.getElementById('projectsTab').classList.remove('hidden');
+                    document.getElementById('freelancersTab').classList.add('hidden');
+                    document.getElementById('mainTitle').textContent = 'Find Perfect Projects';
+                    document.getElementById('mainSubtitle').textContent = 'Discover amazing opportunities from Temple Home Creations';
+                    } else if (tab === 'freelancers') {
+                    document.getElementById('projectsTab').classList.add('hidden');
+                    document.getElementById('freelancersTab').classList.remove('hidden');
+                    document.getElementById('mainTitle').textContent = 'Find Top Freelancers';
+                    document.getElementById('mainSubtitle').textContent = 'Connect with skilled professionals for your projects';
+                }
+            }
+
+                // Apply filters
+            function applyFilters() {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                const location = document.getElementById('locationInput').value.toLowerCase();
+                const skills = document.getElementById('skillsFilter').value.toLowerCase();
+                const budget = document.getElementById('budgetFilter').value;
+                const duration = document.getElementById('durationFilter').value;
+                const experience = document.getElementById('experienceFilter').value;
+    
+                // Get selected categories
+                const selectedCategories = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                                     .map(cb => cb.value);
+
+                if (currentTab === 'projects') {
+                    filteredProjects = projectsData.filter(project => {
+                        // Search filter
+                        if (searchTerm && !project.title.toLowerCase().includes(searchTerm) && 
+                            !project.description.toLowerCase().includes(searchTerm) &&
+                            !project.skills.some(skill => skill.toLowerCase().includes(searchTerm))) {
+                                return false;
+                        }
+
+                        // Location filter
+                        if (location && !project.location.toLowerCase().includes(location)) {
+                                return false;
+                        }
+
+                        // Skills filter
+                        if (skills && !project.skills.some(skill => skill.toLowerCase().includes(skills))) {
+                                return false;
+                        }
+
+                        // Category filter
+                        if (selectedCategories.length > 0 && !selectedCategories.includes(project.category)) {
+                             return false;
+                        }
+
+                        // Budget filter
+                        if (budget && project.budget !== budget) {
+                            return false;
+                        }
+
+                        // Duration filter
+                        if (duration && project.duration !== duration) {
+                            return false;
+                        }
+
+                        return true;
+                    });
+
+                    renderProjects(filteredProjects);
+                } else {
+                    filteredFreelancers = freelancersData.filter(freelancer => {
+                    // Search filter
+                    if (searchTerm && !freelancer.name.toLowerCase().includes(searchTerm) && 
+                        !freelancer.title.toLowerCase().includes(searchTerm) &&
+                        !freelancer.skills.some(skill => skill.toLowerCase().includes(searchTerm))) {
+                            return false;
+            }
+
+                    // Location filter
+                    if (location && !freelancer.location.toLowerCase().includes(location)) {
+                        return false;
+                    }
+
+                        // Skills filter
+                    if (skills && !freelancer.skills.some(skill => skill.toLowerCase().includes(skills))) {
+                        return false;
+                    }
+
+                    // Category filter
+                    if (selectedCategories.length > 0 && !selectedCategories.includes(freelancer.category)) {
+                        return false;
+                    }
+
+                    // Experience filter
+                    if (experience && freelancer.experience !== experience) {
+                        return false;
+                    }
+
+                return true;
+                });
+
+                renderFreelancers(filteredFreelancers);
+            }
+        }
+
+        // Setup event listeners
+    function setupEventListeners() {
+        // Real-time filtering
+        document.getElementById('skillsFilter').addEventListener('input', applyFilters);
+        document.getElementById('budgetFilter').addEventListener('change', applyFilters);
+        document.getElementById('durationFilter').addEventListener('change', applyFilters);
+        document.getElementById('experienceFilter').addEventListener('change', applyFilters);
+    
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', applyFilters);
+        });
+
+        // File upload handlers
+        document.getElementById('resumeFile').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name;
+            if (fileName) {
+                e.target.parentElement.innerHTML = `
+                    <div>📄 ${fileName}</div>
+                    <small>Resume uploaded successfully</small>
+                `;
+            }
+        });
+
+        document.getElementById('portfolioFiles').addEventListener('change', function(e) {
+            const fileCount = e.target.files.length;
+            if (fileCount > 0) {
+                e.target.parentElement.innerHTML = `
+                    <div>🎨 ${fileCount} file(s) uploaded</div>
+                    <small>Portfolio files uploaded successfully</small>
+                `;
+            }
+        });
+        }
+
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Project actions
+        function viewProject(projectId) {
+            const project = projectsData.find(p => p.id === projectId);
+            alert(`Viewing project: ${project.title}\n\nDescription: ${project.description}\n\nBudget: ₹${project.budget}\nDuration: ${project.duration} months\nSkills: ${project.skills.join(', ')}`);
+        }
+
+        function applyToProject(projectId) {
+            const project = projectsData.find(p => p.id === projectId);
+            alert(`Applied to project: ${project.title}\n\nYour application has been submitted successfully!`);
+        }
+
+        function saveProject(projectId) {
+            const project = projectsData.find(p => p.id === projectId);
+            alert(`Project saved: ${project.title}\n\nProject has been added to your saved list!`);
+        }
+
+        // Freelancer actions
+        function viewFreelancer(freelancerId) {
+            const freelancer = freelancersData.find(f => f.id === freelancerId);
+            alert(`Freelancer Profile: ${freelancer.name}\n\nTitle: ${freelancer.title}\nRate: ₹${freelancer.hourlyRate}/hour\nRating: ${freelancer.rating}⭐\nCompleted Projects: ${freelancer.completedProjects}\n\nBio: ${freelancer.bio}`);
+        }
+
+        function hireFreelancer(freelancerId) {
+            const freelancer = freelancersData.find(f => f.id === freelancerId);
+            alert(`Hiring ${freelancer.name}\n\nContact information will be shared. You can now discuss your project requirements!`);
+        }
+
+        function saveFreelancer(freelancerId) {
+            const freelancer = freelancersData.find(f => f.id === freelancerId);
+            alert(`Message sent to ${freelancer.name}\n\nYou can now start a conversation about your project!`);
+        }
+
+        // Form submission handlers
+        function submitFreelancerRegistration(event) {
+            event.preventDefault();
+    
+        const newFreelancer = {
+            id: freelancersData.length + 1,
+            name: document.getElementById('freelancerName').value,
+            title: document.getElementById('freelancerTitle').value,
+            skills: document.getElementById('freelancerSkills').value.split(',').map(s => s.trim()),
+            experience: document.getElementById('freelancerExperience').value,
+            hourlyRate: parseInt(document.getElementById('freelancerRate').value),
+            rating: 4.0,
+            completedProjects: 0,
+            totalEarnings: "₹0",
+            bio: document.getElementById('freelancerBio').value,
+            location: " Pune,India",
+            avatar: document.getElementById('freelancerName').value.split(' ').map(n => n[0]).join(''),
+            category: "web-development",
+            availability: "Available"
+        };
+    
+        freelancersData.push(newFreelancer);
+        filteredFreelancers = [...freelancersData];
+        renderFreelancers(filteredFreelancers);
+    
+        closeModal('signupModal');
+        alert(`Welcome ${newFreelancer.name}!\n\nYour freelancer profile has been created successfully. You can now start applying to projects!`);
+    
+        // Reset form
+        event.target.reset();
+        }
+
+        function submitProject(event) {
+            event.preventDefault();
+    
+            const newProject = {
+                id: projectsData.length + 1,
+                title: document.getElementById('projectTitle').value,
+                description: document.getElementById('projectDescription').value,
+                budget: document.getElementById('projectBudget').value,
+                duration: document.getElementById('projectDuration').value,
+                priority: document.getElementById('projectPriority').value,
+                category: document.getElementById('projectCategory').value,
+                skills: document.getElementById('projectSkills').value.split(',').map(s => s.trim()),
+                postedDate: "Just now",
+                proposals: 0,
+                location: "Remote"
+            };
+    
+            projectsData.push(newProject);
+            filteredProjects = [...projectsData];
+            renderProjects(filteredProjects);
+    
+            closeModal('postProjectModal');
+            alert(`Project "${newProject.title}" has been posted successfully!\n\nFreelancers can now start applying to your project.`);
+    
+            // Reset form
+            event.target.reset();
+        }
+
+        // Refresh page function
+        function refreshPage() {
+            // Reset all filters
+            document.getElementById('searchInput').value = '';
+            document.getElementById('locationInput').value = '';
+            document.getElementById('skillsFilter').value = '';
+            document.getElementById('budgetFilter').value = '';
+            document.getElementById('durationFilter').value = '';
+            document.getElementById('experienceFilter').value = '';
+    
+            // Uncheck all checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+    
+            // Reset filtered data
+            filteredProjects = [...projectsData];
+            filteredFreelancers = [...freelancersData];
+    
+            // Re-render current tab
+            if (currentTab === 'projects') {
+                renderProjects(filteredProjects);
+            } else {
+                renderFreelancers(filteredFreelancers);
+            }
+    
+            // Show refresh animation
+            const refreshBtn = document.querySelector('.btn-refresh');
+            refreshBtn.style.transform = 'translateY(-2px) rotate(360deg)';
+            setTimeout(() => {
+                refreshBtn.style.transform = '';
+            }, 500);
+    
+            console.log('Page refreshed - all filters cleared');
+        }
+
+         // Initialize page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>
